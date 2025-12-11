@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Django
+*.log
+db.sqlite3
+
+# 環境変数 (もしあれば)
+.env
+
+# VSCode
+.vscode/
+
+# バイトコードキャッシュ
+*.py[cod]
+
+# 仮想環境
+venv/
+.venv/
+env/
+Env/
+
+# OSごとのゴミファイル
+.DS_Store
+Thumbs.db

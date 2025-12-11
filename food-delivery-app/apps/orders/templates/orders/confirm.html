@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文確認</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <h1>注文確認</h1>
+        <p>以下の内容で注文を確定しますか？</p>
+        <div class="order-details">
+            <h2>注文内容</h2>
+            <ul>
+                {% for item in order.items %}
+                    <li>{{ item.name }} - {{ item.quantity }}個</li>
+                {% endfor %}
+            </ul>
+            <p>合計金額: ¥{{ order.total }}</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">注文を確定する</button>
+        </form>
+        <a href="{% url 'orders:order_list' %}">注文一覧に戻る</a>
+    </div>
+</body>
+</html>

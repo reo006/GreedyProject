@@ -1,0 +1,85 @@
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>購入完了 - Greedy</title>
+
+  <style>
+    body {
+      font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+      background: linear-gradient(135deg, #f9f9f9 0%, #d0f0ff 100%);
+      text-align: center;
+      padding-top: 120px;
+      margin: 0;
+    }
+
+    header {
+      width: 100%;
+      background: #4db6ac;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 40px 50px;
+      max-width: 600px;
+      width: 90%;
+      margin: auto;
+      margin-top: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 0.6s;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background: #4db6ac;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #009688;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+  </style>
+</head>
+
+<body>
+
+<header>購入完了</header>
+
+<div class="container">
+  <h2>🎉 ご購入ありがとうございました！</h2>
+
+  <p style="font-size: 1.2rem;">
+    ご注文が正常に完了しました。<br>
+    配達員が準備を進めています。
+  </p>
+
+  <a href="{% url 'home' %}" class="button">🏠 ホームへ戻る</a>
+</div>
+
+</body>
+</html>

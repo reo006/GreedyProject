@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規アカウント作成</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>新規アカウント作成</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">アカウントを作成</button>
+        </form>
+        <p>すでにアカウントをお持ちですか？ <a href="{% url 'accounts:login' %}">ログイン</a></p>
+    </div>
+</body>
+</html>

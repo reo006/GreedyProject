@@ -1,0 +1,205 @@
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>カート - Greedy</title>
+  <style>
+    body {
+      font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+      background: linear-gradient(135deg, #f9f9f9 0%, #d0f0ff 100%);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      width: 100%;
+      background: #4db6ac;
+      color: white;
+      padding: 25px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .item-info {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .item-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .item-price {
+      font-size: 1.2rem;
+      color: #00796b;
+    }
+
+    .qty-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-btn {
+      background: #4db6ac;
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .qty-btn:hover {
+      background: #009688;
+    }
+
+    .delete-btn {
+      background: #e57373;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      
+    }
+    .delete-btn:hover {
+      background: #d32f2f;
+    }
+
+    .total {
+      text-align: right;
+      font-size: 1.6rem;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      background: #4db6ac;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+      
+    }
+
+    .back-link:hover {
+      background: #009688;
+    }
+
+    .purchase-container {
+    margin-top: 30px;
+    text-align: center;
+    }
+
+    .purchase-btn {
+        display: inline-block;
+        background: #4db6ac;
+        color: rgb(255, 255, 255);
+        padding: 14px 30px;
+        border-radius: 10px;
+        font-size: 1.3rem;
+        text-decoration: none;
+        transition: 0.3s;
+         font-weight: bold;
+    }
+
+    .purchase-btn:hover {
+        background: #009688;
+        transform: translateY(-3px);
+    }
+
+  </style>
+</head>
+<body>
+
+<header>🛒 カート</header>
+
+<div class="container">
+
+  {% if cart.items.all %}
+      {% for item in cart.items.all %}
+      <div class="cart-item">
+
+
+        <div class="item-info">
+          <div class="item-name">{{ item.name }}</div>
+          <div class="item-price">¥{{ item.price }} × {{ item.quantity }}</div>
+        </div>
+
+        <div class="qty-box">
+          <form method="post" action="{% url 'cart_decrease' item.id %}">
+            {% csrf_token %}
+            <button class="qty-btn">−</button>
+          </form>
+
+          <strong>{{ item.quantity }}</strong>
+
+          <form method="post" action="{% url 'cart_increase' item.id %}">
+            {% csrf_token %}
+            <button class="qty-btn">＋</button>
+          </form>
+        </div>
+
+        <form method="post" action="{% url 'cart_delete' item.id %}">
+          {% csrf_token %}
+          <button class="delete-btn">削除</button>
+        </form>
+
+      </div>
+      {% endfor %}
+
+      <p class="total">合計金額：¥{{ cart.total_price }}</p>
+
+  {% else %}
+      <p style="font-size:1.5rem; text-align:center;">カートは空です。</p>
+  {% endif %}
+    {% if cart.items.all %}
+        {% if cart.items.count > 0 %}
+            <div class="purchase-container">
+                <a href="{% url 'purchase' %}" class="purchase-btn">購入する</a>
+            </div>
+        {% endif %}
+    {% endif %} 
+
+
+  <a href="{% url 'search' %}" class="back-link">← 商品検索に戻る</a>
+</div>
+
+</body>
+</html>
