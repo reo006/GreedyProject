@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>注文作成</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <h1>注文を作成</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">注文を登録</button>
+        </form>
+        <p><a href="{% url 'orders:order_list' %}">注文一覧へ戻る</a></p>
+    </div>
+</body>
+</html>
+

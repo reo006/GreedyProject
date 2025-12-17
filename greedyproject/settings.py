@@ -16,11 +16,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
+    'rest_framework',
+
     'apps.core',
-    'apps.accounts',  # accounts も apps 配下なら
+    'apps.accounts',
+    'apps.restaurants',
+    'apps.orders',
+    'apps.api',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,7 +72,8 @@ USE_TZ = True
 # ✅ ここも1回だけ
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'food-delivery-app' / 'static',
+    BASE_DIR / 'static',
+    BASE_DIR / 'core' / 'static',
 ]
 
 MEDIA_URL = '/media/'
@@ -75,3 +83,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CORS_ALLOW_ALL_ORIGINS = True

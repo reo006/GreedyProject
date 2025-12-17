@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>ナビゲーションバー</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'core:home' %}">ホーム</a></li>
+            <li><a href="{% url 'accounts:login' %}">ログイン</a></li>
+            <li><a href="{% url 'accounts:signup' %}">新規アカウント作成</a></li>
+            <li><a href="{% url 'accounts:profile_edit' %}">アカウント情報変更</a></li>
+            <li><a href="{% url 'restaurants:search' %}">商品検索</a></li>
+            <li><a href="{% url 'orders:order_list' %}">注文一覧</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
+

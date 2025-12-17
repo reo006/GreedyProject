@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>注文確認</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <h1>注文確認</h1>
+        <p><strong>レストラン：</strong>{{ order.restaurant_name }}</p>
+        <p><strong>注文内容：</strong>{{ order.items }}</p>
+        <p class="total">合計金額: ¥{{ order.total_price }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">注文を確定する</button>
+        </form>
+        <p><a href="{% url 'orders:order_list' %}">注文一覧に戻る</a></p>
+    </div>
+</body>
+</html>
+

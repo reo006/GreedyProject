@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レストラン検索 - Greedy</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <h1>レストラン検索</h1>
+        <form method="GET" action="{% url 'restaurants:search' %}">
+            <input type="text" name="q" placeholder="店舗名を入力" value="{{ query|default:'' }}">
+            <button type="submit">検索</button>
+        </form>
+        <section class="restaurant-results">
+            {% if restaurants %}
+                <h2>検索結果</h2>
+                <ul>
+                    {% for restaurant in restaurants %}
+                        <li>
+                            <strong>{{ restaurant.name }}</strong><br>
+                            {{ restaurant.address }}<br>
+                            評価: {{ restaurant.rating }} / 5.00
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>検索された内容に一致するレストランはありません。</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
+
