@@ -10,7 +10,13 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
+raw_hosts = os.getenv('DJANGO_ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = [h.strip() for h in raw_hosts.split(',') if h.strip()]
+
+# 開発中だけ保険（必要なら）
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -20,12 +26,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'apps.core',
-    'apps.accounts',
-    'apps.restaurants',
-    'apps.orders',
-    'apps.api',
+    'apps.accounts',  # accounts も apps 配下なら
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,10 +1,22 @@
 from django.contrib import admin
-from .models import YourModelName  # ここに管理したいモデルをインポートしてください
+from .models import Cart, CartItem, Delivery, Imagemodel
 
-@admin.register(YourModelName)  # ここに管理したいモデルを指定してください
-class YourModelAdmin(admin.ModelAdmin):
-    list_display = ('field1', 'field2', 'field3')  # 表示したいフィールドを指定してください
-    search_fields = ('field1', 'field2')  # 検索可能なフィールドを指定してください
-    list_filter = ('field3',)  # フィルタリング可能なフィールドを指定してください
+@admin.register(Delivery)
+class DeliveryAdmin(admin.ModelAdmin):
+    list_display = ("user", "date", "canceled", "canceled_at")
+    list_filter = ("canceled", "date")
+    search_fields = ("user__username",)
 
-# 他のモデルがある場合は、同様に@admin.registerを使って登録してください
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ("user",)
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "quantity", "cart")
+    list_filter = ("cart",)
+    search_fields = ("name",)
+
+@admin.register(Imagemodel)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ("id",)
