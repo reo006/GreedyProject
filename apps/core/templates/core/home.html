@@ -238,18 +238,18 @@
     <div class="auth-links">
       {% if user.is_authenticated %}
         <span>{{ username }} さん</span>
-        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
           {% csrf_token %}
           <button type="submit" style="background:none;border:none;color:white;cursor:pointer;font-weight:bold;">
             ログアウト
           </button>
         </form>
       {% else %}
-        <a href="{% url 'login' %}">ログイン</a>
-        <a href="{% url 'signup' %}">新規アカウント作成</a>
+        <a href="{% url 'accounts:login' %}">ログイン</a>
+        <a href="{% url 'accounts:signup' %}">新規アカウント作成</a>
       {% endif %}
 
-      <a href="{% url 'cart' %}" class="cart-link">🛒 カート</a>
+      <a href="{% url 'core:cart' %}" class="cart-link">🛒 カート</a>
     </div>
   </header>
 
