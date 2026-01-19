@@ -8,3 +8,11 @@ def search_restaurants(request):
     else:
         restaurants = Restaurant.objects.all()
     return render(request, 'restaurants/search.html', {'restaurants': restaurants})
+
+def search(request):
+    # search_restaurants の別名
+    return search_restaurants(request)
+
+def cart(request):
+    # カート表示ビュー
+    return render(request, 'restaurants/cart.html')

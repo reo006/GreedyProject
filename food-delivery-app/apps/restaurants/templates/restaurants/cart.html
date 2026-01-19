@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カート - 食事配達アプリ</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'includes/nav.html' %}
+    <div class="container">
+        <h1>ショッピングカート</h1>
+        <p>カートは現在空です。</p>
+        <a href="{% url 'restaurants:restaurant_search' %}" class="btn">商品を検索する</a>
+    </div>
+</body>
+</html>
