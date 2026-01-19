@@ -87,7 +87,7 @@ def add_to_cart(request, item_id):
         cart_item.quantity += quantity
         cart_item.save()
 
-    return redirect("core:cart")
+    return redirect("core:purchase")
 
 
 @login_required
