@@ -222,13 +222,13 @@
     <img src="{% static 'core/images/niwatori.png' %}" alt="ロゴ" class="logo">
     <h1>商品検索</h1>
     <div class="user-menu">
-      <a href="{% url 'cart' %}" class="cart-link">🛒 カート</a>
+      <a href="{% url 'core:cart' %}" class="cart-link">🛒 カート</a>
     </div>
 
   </header>
 
   <div class="container">
-    <form method="get" action="{% url 'search' %}">
+    <form method="get" action="{% url 'core:search' %}">
       <input type="text" name="q" value="{{ query }}" placeholder="検索ワードを入力">
       <button type="submit">検索</button>
     </form>
@@ -251,23 +251,23 @@
   <h2>🍽 おすすめの食膳</h2>
   <div class="recommend-list">
     
-    <a href="{% url 'menu_detail' 'yasai' %}" class="recommend-item bg-yasai">
+    <a href="{% url 'core:menu_detail' 'yasai' %}" class="recommend-item bg-yasai">
       <div class="overlay"><p>🌿 ヘルシー野菜プレート</p></div>
     </a>
-    <a href="{% url 'menu_detail' 'suteki' %}" class="recommend-item bg-suteki">
+    <a href="{% url 'core:menu_detail' 'suteki' %}" class="recommend-item bg-suteki">
       <div class="overlay"><p>🥩 ジューシーステーキセット</p></div>
     </a>
-    <a href="{% url 'menu_detail' 'susij' %}" class="recommend-item bg-susij">
+    <a href="{% url 'core:menu_detail' 'susij' %}" class="recommend-item bg-susij">
       <div class="overlay"><p>🍣 彩り寿司御膳</p></div>
     </a>
-    <a href="{% url 'menu_detail' 'pafe' %}" class="recommend-item bg-pafe">
+    <a href="{% url 'core:menu_detail' 'pafe' %}" class="recommend-item bg-pafe">
       <div class="overlay"><p>🍓 デザートパフェ</p></div>
     </a>
   </div>
 </div>
 
     <p style="margin-top: 35px;">
-      <a href="{% url 'home' %}">🏠 ホームへ戻る</a>
+      <a href="{% url 'core:home' %}">🏠 ホームへ戻る</a>
     </p>
   </div>
 

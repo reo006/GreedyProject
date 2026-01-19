@@ -163,20 +163,20 @@
         </div>
 
         <div class="qty-box">
-          <form method="post" action="{% url 'cart_decrease' item.id %}">
+          <form method="post" action="{% url 'core:cart_decrease' item.id %}">
             {% csrf_token %}
             <button class="qty-btn">−</button>
           </form>
 
           <strong>{{ item.quantity }}</strong>
 
-          <form method="post" action="{% url 'cart_increase' item.id %}">
+          <form method="post" action="{% url 'core:cart_increase' item.id %}">
             {% csrf_token %}
             <button class="qty-btn">＋</button>
           </form>
         </div>
 
-        <form method="post" action="{% url 'cart_delete' item.id %}">
+        <form method="post" action="{% url 'core:cart_delete' item.id %}">
           {% csrf_token %}
           <button class="delete-btn">削除</button>
         </form>
@@ -192,7 +192,7 @@
     {% if cart.items.all %}
         {% if cart.items.count > 0 %}
             <div class="purchase-container">
-                <a href="{% url 'purchase' %}" class="purchase-btn">購入する</a>
+                <a href="{% url 'core:purchase' %}" class="purchase-btn">購入する</a>
             </div>
         {% endif %}
     {% endif %} 

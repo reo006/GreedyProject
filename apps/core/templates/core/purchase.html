@@ -130,15 +130,15 @@
     <div class="auth-links">
       {% if user.is_authenticated %}
         <span>{{ user.username }} さん</span>
-        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
           {% csrf_token %}
           <button type="submit" style="background:none;border:none;color:white;font-weight:bold;cursor:pointer;">ログアウト</button>
         </form>
       {% else %}
-        <a href="{% url 'login' %}">ログイン</a>
-        <a href="{% url 'signup' %}">新規登録</a>
+        <a href="{% url 'accounts:login' %}">ログイン</a>
+        <a href="{% url 'accounts:signup' %}">新規登録</a>
       {% endif %}
-      <a href="{% url 'cart' %}" class="cart-link">🛒 カート</a>
+      <a href="{% url 'core:cart' %}" class="cart-link">🛒 カート</a>
     </div>
   </header>
 
@@ -165,8 +165,8 @@
       💴 合計：{{ cart.total_price }} 円
     </div>
 
-    <a href="{% url 'purchase_complete' %}" class="button">✔ 購入を確定する</a>
-    <a href="{% url 'cart' %}" class="button danger">← カートに戻る</a>
+    <a href="{% url 'core:purchase_complete' %}" class="button">✔ 購入を確定する</a>
+    <a href="{% url 'core:cart' %}" class="button danger">← カートに戻る</a>
   </div>
 
 </body>
