@@ -1,0 +1,278 @@
+<!doctype html>
+{% load static %}
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Greedy - ホーム</title>
+
+  <style>
+    @charset "utf-8";
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+      background: linear-gradient(135deg, #f9f9f9 0%, #d0f0ff 100%);
+      color: #333;
+      min-height: 100vh;
+      padding-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: #4db6ac;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    h1 { font-size: 3rem; margin: 0; }
+
+    .auth-links {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+    }
+
+    .auth-links a,
+    .cart-link {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 20px;
+      font-size: 1.1rem;
+      transition: 0.3s;
+    }
+
+    .auth-links a:hover {
+      text-decoration: underline;
+      color: #e0f2f1;
+    }
+
+    .img-box {
+      width: 100%;
+      height: 22vw;
+      overflow: hidden;
+      position: relative;
+      margin-top: 70px;
+    }
+
+    .img-box > div {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 25vw;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: fade 20s infinite;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      50% { opacity: 1; }
+      60% { opacity: 1; }
+      80% { opacity: 0; transform: scale(1.2); }
+      100% { opacity: 0; }
+    }
+
+    .img-box > div:nth-of-type(1) {
+      background-image: url("{% static 'core/images/udon.jpg' %}");
+      animation-delay: 0s;
+    }
+    .img-box > div:nth-of-type(2) {
+      background-image: url("{% static 'core/images/sarada.png' %}");
+      animation-delay: 4s;
+    }
+    .img-box > div:nth-of-type(3) {
+      background-image: url("{% static 'core/images/cake.jpg' %}");
+      animation-delay: 8s;
+    }
+    .img-box > div:nth-of-type(4) {
+      background-image: url("{% static 'core/images/katsuo.jpg' %}");
+      animation-delay: 12s;
+    }
+    .img-box > div:nth-of-type(5) {
+      background-image: url("{% static 'core/images/kinoko.jpg' %}");
+      animation-delay: 16s;
+    }
+
+    .logo {
+      height: 100px;
+      width: auto;
+      margin-top: 30px;
+      animation: walk 2s ease-in-out infinite;
+    }
+
+    @keyframes walk {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(3px, -6px) rotate(-3deg); }
+      40%  { transform: translate(6px, 0) rotate(2deg); }
+      60%  { transform: translate(9px, -5px) rotate(-2deg); }
+      80%  { transform: translate(12px, 0) rotate(3deg); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 50px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 0.7s ease;
+      margin-top: 40px;
+    }
+
+    .delivery-time {
+      background: #e0f7fa;
+      color: #00796b;
+      font-size: 1.6rem;
+      padding: 15px 25px;
+      border-radius: 12px;
+      margin: 20px 0 30px 0;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .button {
+      background: #4db6ac;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.3rem;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .button:hover {
+      background: #009688;
+      transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+    #message {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-size: 68px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: rgb(0, 148, 57);
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 5px #555c5b;
+      transition: all 0.1s ease;
+      margin-top: 5px;
+    }
+
+    button:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px #2e7d32;
+    }
+
+    .img {
+      --color: #33FF33;
+      --border: 10px;
+      --offset: 20px;
+      --gap: 5px;
+      --_c: var(--color) var(--border), #2ec57e00 0 calc(100% - var(--border)),var(--color) 0;
+      --_o: calc(3*var(--offset));
+      padding:
+        calc(var(--gap) + var(--border))
+        calc(var(--gap) + var(--border) + var(--offset))
+        calc(var(--gap) + var(--border) + var(--offset))
+        calc(var(--gap) + var(--border));
+      background:
+        linear-gradient(      var(--_c)) var(--_o) var(--_o),
+        linear-gradient(90deg,var(--_c)) var(--_o) var(--_o);
+      background-size: calc(100% - var(--_o)) calc(100% - var(--_o));
+      background-repeat: no-repeat;
+      filter: grayscale(.4);
+      transition: .5s;
+      cursor: pointer;
+      margin-left: 150px;
+      filter: brightness(1);
+    }
+
+    .img:hover {
+      background-position: 0px 0px;
+      background-size: calc(100% - var(--offset)) calc(100% - var(--offset));
+      filter: grayscale(0);
+    }
+
+    .margin {
+      margin-left: 45px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Greedy</h1>
+    <div class="auth-links">
+      {% if user.is_authenticated %}
+        <span>{{ username }} さん</span>
+        <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" style="background:none;border:none;color:white;cursor:pointer;font-weight:bold;">
+            ログアウト
+          </button>
+        </form>
+      {% else %}
+        <a href="{% url 'accounts:login' %}">ログイン</a>
+        <a href="{% url 'accounts:signup' %}">新規アカウント作成</a>
+      {% endif %}
+
+      <a href="{% url 'core:cart' %}" class="cart-link">🛒 カート</a>
+    </div>
+  </header>
+
+  <div class="img-box">
+    <div><matsu class="jpg"></matsu></div>
+    <div><iwa class="jpg"></iwa></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="container">
+    <img src="{% static 'core/images/niwatori.png' %}" alt="ロゴ" class="logo">
+
+    <h2>ようこそ {{ username }} さん！</h2>
+
+    <div class="delivery-time">
+      🚚 本日の配達完了予定時刻：<strong>{{ delivery_time }}</strong>
+    </div>
+
+    <a href="{% url 'core:search' %}" class="button">🔍 商品検索</a>
+  </div>
+
+</body>
+</html>
+
