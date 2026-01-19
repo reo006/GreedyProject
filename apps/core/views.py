@@ -87,7 +87,7 @@ def add_to_cart(request, item_id):
         cart_item.quantity += quantity
         cart_item.save()
 
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
@@ -96,7 +96,7 @@ def cart_increase(request, item_id):
     item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     item.quantity += 1
     item.save()
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
@@ -108,7 +108,7 @@ def cart_decrease(request, item_id):
         item.save()
     else:
         item.delete()
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
@@ -116,7 +116,7 @@ def cart_decrease(request, item_id):
 def cart_delete(request, item_id):
     item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
     item.delete()
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
@@ -127,7 +127,7 @@ def update_cart_quantity(request, item_id):
     item = get_object_or_404(CartItem, id=item_id, cart=cart)
     item.quantity = max(new_qty, 1)
     item.save()
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
@@ -136,14 +136,14 @@ def delete_cart_item(request, item_id):
     cart = get_cart(request.user)
     item = get_object_or_404(CartItem, id=item_id, cart=cart)
     item.delete()
-    return redirect("cart")
+    return redirect("core:cart")
 
 
 @login_required
 def purchase(request):
     cart = get_cart(request.user)
     if cart.items.count() == 0:
-        return redirect("cart")
+        return redirect("core:cart")
 
     if request.method == "POST":
         cart.items.all().delete()
