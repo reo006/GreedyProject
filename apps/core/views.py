@@ -11,10 +11,10 @@ from .models import Cart, CartItem, Delivery
 
 
 MENU_DATA = {
-    "yasai": {"name": "ヘルシー野菜プレート", "price": 800, "img": "core/images/yasai.jpg"},
-    "suteki": {"name": "ジューシーステーキセット", "price": 1500, "img": "core/images/suteki.jpg"},
-    "susij": {"name": "彩り寿司御膳", "price": 1800, "img": "core/images/susi.jpg"},
-    "pafe": {"name": "デザートパフェ", "price": 700, "img": "core/images/pafe.jpg"},
+    "yasai": {"name": "ヘルシー野菜プレート", "price": 800, "img": "yasai.jpg"},
+    "suteki": {"name": "ジューシーステーキセット", "price": 1500, "img": "suteki.jpg"},
+    "susij": {"name": "彩り寿司御膳", "price": 1800, "img": "susi.jpg"},
+    "pafe": {"name": "デザートパフェ", "price": 700, "img": "pafe.jpg"},
 }
 
 
