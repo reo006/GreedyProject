@@ -27,7 +27,7 @@ def signup(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('core:home')
     else:
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form': form})
